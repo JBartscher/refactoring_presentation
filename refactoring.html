@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Refactoring – Oder wie wir das Design von bestehender Software verbessern um anfälle geistigerr Umnachtung zu verhindern</title>
+
+    <meta name="description" content="Refactoring – Oder wie wir das Design von bestehender Software verbessern um anfälle geistigerr Umnachtung zu verhindern">
+    <meta name="author" content="Jasper Bartscher">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Intro -->
+            <section>
+                <h1>Refactoring</h1>
+                <h3>Wie Sie das Design vorhandener Software verbessern</h3>
+                <h6>Oder: The mind boggling positive effects of refactoring on sanity and happiness</h6>
+                <p>
+                    <small>Created by <a href="http://bartscher.io">Jasper Bartscher</a></small>
+                </p>
+            </section>
+            <!-- Definition -->
+            <section>
+                <h2>kurze Defintion</h2>
+                <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                    &ldquo;Refactoring ist der Vorgang, ein funktionsfähiges Programm zu nehmen und dessen Wert zu erhöhen, indem wir sein Verhalten nicht ändern, aber ihm mehr Eigenschaften geben, die es uns ermöglichen, es mir hohem Tempo weiterzuentwickeln.&ldquo; - Kent
+                    Beck
+                </blockquote>
+            </section>
+            <!-- Motivation -->
+            <section>
+                <h2>kürzere Motivation</h2>
+                <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+                    &ldquo;Ich bin immer bereit sehr hart zu arbeiten um möglichst wenig zu arbeiten.&ldquo; - Jasper Bartscher
+                </blockquote>
+            </section>
+            <!-- Vorraussetzungen -->
+            <section>
+                <h2>Vorraussetzungen zum Refactoring</h2>
+                <p class="fragment grow highlight-green">der bestehende Code muss funktionieren!</p>
+                <p class="fragment highlight-red">kaputten Code muss man reparieren oder neuschreiben!</p>
+                <p class="fragment highlight-blue">Code muss "allen" gehören!</p>
+                <p>
+                    <span style="display: inline-block;" class="fragment fade-right">Dann brauchen wir: </span>
+                    <span style="display: inline-block;" class="fragment fade-right">Tests, </span>
+                    <span style="display: inline-block;" class="fragment fade-up">Tests, </span>
+                    <span style="display: inline-block;" class="fragment fade-left">... und noch mehr Tests</span>
+
+                    <span style="display: inline-block;" class="fragment fade-down">Nein Keine Angst! Wir benötigen erstmal nur <span class="fragment highlight-blue">Funktionale Tests</span>, noch keine <span class="fragment highlight-current-blue">Unit Tests</span></span>
+            </section>
+            <!-- Zeichen das Refactoriert werden muss -->
+            <section>
+                <h2>Zeichen das Refactoriert werden muss</h2>
+				<ul>
+					<li>Ständiger Zeitdruck nach neuen Featueres</li>
+					<li>Abhetzen von Deadline zu Deadline</li>
+					<li>Unzufriede Mitarbeiter</li>
+					<li>Fehler tretten häufiger auf ohne das sie bekannt waren</li>
+					<li>Schwer lesbarer Code</li>
+					<li>Änderungen am Code erzeugen Seiteneffekte</li>
+					<li>Komplexe Bedingungen oder Entscheidungsbäume</li>
+				</ul>
+            </section>
+            <!-- Code Smells -->
+            <section>
+                <h2>Code Smells</h2>
+                <ul>
+                    <li>Lange Methoden</li>
+                    <li>Lange Klassen</li>
+                    <li>Lange Parameterlisten</li>
+                    <li>Redundanter/ duplizierter Code</li>
+                    <li>divergente Änderungen</li>
+                    <li>Schrotkugeln</li>
+                    <li>Neid</li>
+                    <li>switch-case</li>
+                    <li>viele elementare Typen</li>
+                    <li>viele Kommentare<span style="display: inline-block;" class="fragment fade-left highlight-red">?</span></li>
+                </ul>
+            </section>
+
+            <!-- Vorteile & Nachteile -->
+            <section data-background-transition="zoom" data-background="#4d7e65">
+                <h2>Vorteile des Refactorings</h2>
+                <ul>
+                    <li>massiver Zeitgewinn beim Einarbeiten von MA in bestehenden Code</li>
+                    <li>generell massiver Zeitgewinn beim programmieren</li>
+                    <li>schafft tieferes Verständnis für den vorliegen Code</li>
+                    <li>zunahme der Arbeitsqualität</li>
+                    <li>schnelle Anpassungen am Code möglich</li>
+                </ul>
+            </section>
+            <section data-background-transition="zoom" data-background="#b5533c">
+                <h2>Nachteile des Refactorings</h2>
+                <ul>
+                    <li>Falsch ausgeführt schaufelt sich der Entwickler sein eigenes Grab</li>
+                    <li>unfertiges Refactoring ist wie Schulden machen</li>
+                    <li>zu starke indirektion</li>
+                </ul>
+            </section>
+            <!-- Code Beispiele Refactoring -->
+            <!-- Extract Method - Methoden verkürzen -->
+            <section>
+                <!-- Extract Method - Methoden verkürzen -->
+                <section>
+                    <h2>Extract Method</h2>
+                    <pre>
+                      <code class="hljs" data-trim data-line-numbers="1,6-10">
+                        	void printOwing(double previousAmount) {
+                            Enumeration e = _orders.elements();
+                            double outstanding = previousAmount * 1.2;
+                            printBanner();
+                        
+                            // calculate outstanding
+                            while (e.hasMoreElements()) {
+                              Order each = (Order) e.nextElement();
+                              outstanding += each.getAmount();
+                            }
+                            printDetails(outstanding);
+                          }
+                      </code>
+                    </pre>
+
+                </section>
+                <section>
+                    <pre>
+                      <code class="hljs" data-trim data-line-numbers="3,5-14">
+                          void printOwing(double previousAmount) {
+                            printBanner();
+                            double outstanding = getOutstanding(previousAmount * 1.2);
+                            printDetails(outstanding);
+                          }
+                        
+                          double getOutstanding(double initialValue) {
+                            double result = initialValue;
+                            Enumeration e = _orders.elements();
+                        
+                            while (e.hasMoreElements()) {
+                              Order each = (Order) e.nextElement();
+                              result += each.getAmount();
+                            }
+                            return result;
+                          }
+                      </code>
+                    </pre>
+                    <ul>
+                        <li>höhere Chance das Methoden wiederverwendet werden</li>
+                        <li>higher-level Methoden lesen sich wie "Prosa"</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Replace Conditional with Polymorphism -->
+            <section>
+                <!-- Replace Conditional with Polymorphism -->
+                <section>
+                    <h2>Replace Conditional with Polymorphism</h2>
+                    <pre>
+                                  <code class="hljs" data-trim data-line-numbers="4-10">
+                                      class Swallow {
+                                        // ...
+                                        double getSpeed() {
+                                          switch (type) {
+                                            case EUROPEAN:
+                                              return getBaseSpeed();
+                                            case AFRICAN:
+                                              return getBaseSpeed() - getLoadFactor() * numberOfCoconuts;
+                                            case NORWEGIAN_BLUE:
+                                              return (isNailed) ? 0 : getBaseSpeed(voltage);
+                                          }
+                                          throw new RuntimeException("Should be unreachable");
+                                        }
+                                      }
+                                  </code>
+                                </pre>
+                </section>
+                <section>
+                    <pre>
+                                  <code class="hljs" data-trim data-line-numbers="1-4,23">
+                                      abstract class Swallow {
+                                        // ...
+                                        abstract double getSpeed();
+                                      }
+                                      
+                                      class European extends Swallow {
+                                        double getSpeed() {
+                                          return getBaseSpeed();
+                                        }
+                                      }
+                                      class African extends Swallow {
+                                        double getSpeed() {
+                                          return getBaseSpeed() - getLoadFactor() * numberOfCoconuts;
+                                        }
+                                      }
+                                      class NorwegianBlue extends Swallow {
+                                        double getSpeed() {
+                                          return (isNailed) ? 0 : getBaseSpeed(voltage);
+                                        }
+                                      }
+                                      
+                                      // Somewhere in client code
+                                      speed = bird.getSpeed();
+                                  </code>
+                                </pre>
+                    <ul>
+                        <li>Tell-Don’t-Ask principle: Nicht nach dem Object-state Fragen sondern einen Auftrag erteilen und das Object das "wie" handeln lassen</li>
+                        <li>Extrem einfache Integration von neuen "Conditionals"</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Nullobjekte -->
+            <section>
+                <!-- Nullobjekte -->
+                <section>
+                    <h2>Nullobjekte</h2>
+                    <pre>
+                                  <code class="hljs" data-trim data-line-numbers="2">
+                                        // ...
+                                        if( customer == null){
+                                            plan = BillingPlan.basic();
+                                        }
+                                        else{
+                                            customer.getPlan();
+                                        }
+                                  </code>
+                                </pre>
+                </section>
+                <section>
+                    <img src="Null-pattern.jpg">
+                    <ul>
+                        <li>Referenz auf die Variable zu jedem Zeitpunkt auf ein gültiges Objekt verweist, was Behandlungen von Sonderfällen (Nichtvorhandensein) erübrigt.</li>
+                        <li>Sollte Konstant und als Singleton implementiert werden</li>
+                        <li>Code Redundanz sinkt, Fehler bei keiner Überprüfung vermieden</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Fehlercodes durch Exceptions ersetzen -->
+            <section>
+                <!-- Fehlercodes durch Exceptions ersetzen -->
+                <section>
+                    <h2>Fehlercode durch Ausnahme ersetzten</h2>
+                    <pre>
+                                  <code class="hljs" data-trim data-line-numbers="3,6">
+                                       int withdraw(int amount){
+                                            if(amount > _balance)
+                                                return -1;
+                                            else{
+                                                _balance -= amount;
+                                                return 0;
+                                            }
+                                        }
+                                  </code>
+                                </pre>
+                </section>
+                <section>
+                    <pre>
+                                  <code class="hljs" data-trim data-line-numbers="1,2">
+                                       void withdraw(int amount) throws BalanceException{
+                                            if(amount > _balance) throw new BalanceException();
+                                                _balance -= amount;
+                                        }
+                                  </code>
+                                </pre>
+                    <ul>
+                        <li>Trennung von Verarbeitung und Fehlerbehandlung</li>
+                        <li>Erweiterbare Objekte, keine Basisdatentypen mehr</li>
+                        <li>Weiterreichen an die Stelle die diese Behandeln soll (Voraussetztung OOP)</li>
+                        <li>Nicht übertreiben!</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Klasse extrahieren -->
+            <section>
+                <!-- Klasse extrahieren -->
+                <section>
+                    <h2>Klasse extrahieren</h2>
+                    <pre>
+                                  <code class="hljs" data-trim data-line-numbers="1">
+	class Person {
+		name,
+		officeAreaCode,
+		officeNumber,
+		getTelephoneNumber()
+	}
+                                  </code>
+                                </pre>
+                </section>
+                <section>
+                                       <pre>
+                                  <code class="hljs" data-trim data-line-numbers="1,6">
+	class Person {
+		name,
+		getTelephoneNumber()
+	}
+
+	class TelephoneNumber {
+		areaCode,
+		number,
+		getTelephoneNumber()
+	}
+                                  </code>
+                                </pre>
+                    <ul>
+                        <li>Single-Responsibility-Prinzip</li>
+                        <li>Erhöhung der Testbarkeit</li>
+                        <li>stärkere Abstraktion und Aufgabentrennung</li>
+                        <li>Einfachere Änderung und Erweiterung der Klassen</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Code den wir dann am Laptop Refacturieren -->
+            <section>
+                <section>
+                    <h4>Refactoring - eine Filmausleihe</h4>
+                    <pre><code class="hljs" data-trim data-line-numbers="3-8,10">
+public class Movie{
+
+public static final int CHILDRENS = 2;
+public static final int REGULAR = 0;
+public static final int NEW_RELEASE = 1;
+
+private String _title;
+private String _priceCode;
+
+public Movie(String title, int priceCode){
+   _title = title;
+   _priceCode = priceCodce
+}
+
+/*
+* ... setter und getter für priceCode und title
+*/
+}                           </code></pre>
+                </section>
+                <section>
+                    <pre><code class="hljs" data-trim data-line-numbers="3-4,6">
+public class Rental{
+
+    private Movie _movie;
+    private int _daysRented;
+
+    public Rental(Movie movie, int _daysRented){
+       _movie = movie;
+       _daysRented = daysRented;
+    }
+
+    public int getDaysRented(){
+       return _daysRented;
+    }
+
+    public int getMovie(){
+       return _movie;
+    }
+}                           </code></pre>
+                </section>
+                <section>
+                    <pre><code class="hljs" data-trim data-line-numbers="1-60">
+public class Customer{
+
+    private String _name;
+    private int _rentals = new ArrayList&lt;Rentals&gt;;
+
+    public Customer(String name){
+       _name = name;
+    }
+
+    public int addRental(Rental arg){
+       _rentals.add(arg);
+    }
+
+    public int getName(){
+       return _name;
+    }
+
+    public String statement(){
+       double totalAmount = 0;
+       int frequentRenterPoints= 0;
+       String result = "Rental Record for " + getName() + "\n";
+
+       while (_rentals.hasMoreElements()){
+           double thisAmount = 0;
+           Rental each = (Rental) _rentals.nextElement();
+
+           //Beträge pro Zeile ermitteln
+           switch (each.getMovie().getPriceCode()){
+                case Movie.REGULAR:
+                    thisAmount += 2;
+                    if(each.getDaysRented() > 2)
+                        thisAmount += (each.getDaysRented() - 2) * 1.5;
+                case Movie.NEW_RELEASE:
+                    thisAmount += each.getDaysRented()) * 3;
+                    break;
+                case Movie.CHILDRENS:
+                    thisAmount += 1.5;
+                    if(each.getDaysRented() > 3)
+                        thisAmount += (each.getDaysRented() - 3) * 1.5;
+                    break;
+           }
+
+           //Bonuspunkte aufaddieren
+           frequentRenterPoints ++;
+           //Bonuspunkte für zweittägige Ausleihe einer Neuerscheinung
+           if(each.getMovie().getPriceCode() == Movie.NEW_RELEASE && each.getDaysRented() > 1)
+                frequentRenterPoints ++;
+
+           //Zahlen für die Aussleihe ausgeben
+           result = += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
+           totalAmount += thisAmount;
+       }
+
+       //Fusszeile ausgeben
+       result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
+       result += "Youeve earned" + String.valueOf(frequentRenterPoints)+ " frequent penter points";
+
+       return result;
+    }
+}                           </code></pre>
+                </section>
+            </section>
+			<section>
+			<section>
+				<h4><br/>Alles sehr schön informativ aber wie fange ich den jetzt an?</h4>
+				<ul>
+				<li>Was ist eigentlich mein Client-Code und was ist mein Libary-Code?</li>
+				<li>An welchen Stellen steuern Varianten von Objekten den Prozessablauf?</li>
+				<li>Verstehe ich den <span class="fragment highlight-red">Roten Faden</span> einer Applikation oder zerfasert er</li>
+				<li>Kommentare sagen <span class="fragment highlight-red">WAS</span> aber nicht <span class="fragment highlight-green">WARUM</span> Dinge so sind wie sie sind</li>
+				</ul>
+				</section>
+                <section>
+				<h4><br/>Antipatterns</h4>
+				<ul>
+				<li>Big Ball of Mud &#x21D2; Design Patterns, Software Architecture</li>
+				<li>Gottobject &#x21D2; aufteilen in Objekte</li>
+				<li>Sumo-Hochzeit &#x21D2; DB-Abstraktionsschicht</li>
+				<li>Lavafluss &#x21D2; Code Coverage Test</li>
+				<li>Zwiebel &#x21D2; Refakturierung des bestehenden Codes anstatt "ranklatschen" von Features</li>
+				<li>Magische Werte &#x21D2; Enumerationen oder Polymorphie</li>
+				</ul>
+				</section>
+			</section>
+
+            <!-- Empfehlung & Rausschmeißer -->
+            <section>
+                <h2>Abschließende Worte</h2>
+                <ul>
+                    <span style="display: inline-block;" class="fragment fade-right"><li>Refactorieren ist wie Sport, wir sollten Ihn machen weil er gut für uns ist, können uns aber manchmal nur schwer motivieren.</li></span>
+                    <span style="display: inline-block;" class="fragment fade-right"><li>Knabbern statt Schlingen</li></span>
+                    <span style="display: inline-block;" class="fragment fade-right"><li>Schlau (Toolgestützt) arbeiten</li></span>
+                    <span style="display: inline-block;" class="fragment fade-right"><li>Fehler liegen lassen und erst im Anschluss beheben</li></span>
+                    <span style="display: inline-block;" class="fragment fade-right"><li>Es erscheint anfangs soooo Mühselig</li></span>
+                        <span style="display: inline-block;" class="fragment fade-right"><li>geht aber schnell ins Blut über</li></span>
+                </ul>
+            </section>
+            <section>
+                <h2><br/>Empfehlung</h2>
+                <img src="https://images-na.ssl-images-amazon.com/images/I/51K-M5hR8qL._SX392_BO1,204,203,200_.jpg" style="width:150px;height:200px;">
+                <h4><a href="https://www.amazon.de/Refactoring-Improving-Design-Existing-Technology/dp/0201485672/">Deep Dive</a></h4>
+                <h4> <a href="https://github.com/HugoMatilla/Refactoring-Summary">Quick Reference</a></h4>
+            </section>
+            <section data-background="https://media.giphy.com/media/YV3vOINigsezsVO7Xu/giphy.gif">
+                <h2>Ich hoffe ich konnte euch etwas für Refactoring begeistern</h2>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true
+            }, {
+                src: 'plugin/search/search.js',
+                async: true
+            }, {
+                src: 'plugin/zoom-js/zoom.js',
+                async: true
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }, ]
+        });
+    </script>
+
+    <!-- Paste the following into your Reveal.js index.html to add +/- buttons to every <code> section -->
+    <style>
+        .reveal .fullscreen {
+            width: 1000px;
+            height: 600px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            max-height: none;
+            margin-top: -20px;
+        }
+        
+        .reveal .plus,
+        .reveal .minus {
+            color: #d3d3d3;
+            z-index: 200;
+            font-size: 32px;
+            position: absolute;
+            top: 0px;
+        }
+        
+        .reveal .plus {
+            left: 880px;
+        }
+        
+        .reveal .minus {
+            left: 990px;
+            display: none;
+        }
+        
+        .reveal .plus:hover,
+        .reveal .minus:hover {
+            cursor: pointer;
+            color: #000;
+        }
+        
+        @media print {
+            .reveal .minus,
+            .reveal .plus {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        // Add maximize/minimize "buttons" to parents of hljs divs
+        var removeClass = function(classList, className) {
+            return classList.split(' ').filter(function(c) {
+                return c !== className
+            }).join(' ');
+        }
+        hs = [].slice.call(document.getElementsByClassName('hljs'))
+        hs.forEach(function(el) {
+            var plus = document.createElement('span'),
+                minus = document.createElement('span');
+            plus.appendChild(document.createTextNode('+'));
+            el.parentElement.appendChild(plus);
+            plus.addEventListener('click', function() {
+                // undo vertical centering on current slide:
+                [].slice.call(document.getElementsByClassName('present')).forEach(function(p) {
+                    p.style.top = 0
+                });
+                el.className = el.className + ' fullscreen';
+                minus.style.display = 'block';
+                this.style.display = 'none';
+            });
+            plus.className = 'plus';
+
+            minus.appendChild(document.createTextNode('-'));
+            el.parentElement.appendChild(minus);
+            minus.addEventListener('click', function() {
+                el.className = removeClass(el.className, 'fullscreen');
+                plus.style.display = 'block';
+                this.style.display = 'none';
+            });
+            minus.className = 'minus';
+        });
+    </script>
+</body>
+
+</html>
