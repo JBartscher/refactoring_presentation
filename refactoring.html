@@ -101,14 +101,14 @@
                     <li>Lange Methoden</li>
                     <li>Lange Klassen</li>
                     <li>Lange Parameterlisten</li>
+					 <li>Neid</li>
                     <li>Redundanter/ duplizierter Code</li>
                     <li>divergente Änderungen</li>
-                    <li>Schrotkugeln</li>
-                    <li>Neid</li>
+                    <li>Schrotkugeln</li>                   
                     <li>switch-case</li>
                     <li>viele elementare Typen</li>
                     <li>viele Kommentare<span style="display: inline-block;" class="fragment fade-left highlight-red">?</span></li>
-					<li>...</li>
+					<li><a href="https://de.wikipedia.org/wiki/Code-Smell">und viele weitere ...</a></li>
                 </ul>
             </section>
 
@@ -128,6 +128,7 @@
                 <ul>
                     <li>Falsch ausgeführt schaufelt sich der Entwickler sein eigenes Grab</li>
                     <li>unfertiges Refactoring ist wie Schulden machen</li>
+					<li>lieber erstmal Architektur planen als loscoden</li>
                     <li>zu starke indirektion</li>
                 </ul>
             </section>
@@ -136,7 +137,7 @@
             <section>
                 <!-- Extract Method - Methoden verkürzen -->
                 <section>
-                    <h2>Extract Method</h2>
+                    <h2>Methode Extrahieren</h2>
                     <pre>
                       <code class="hljs" data-trim data-line-numbers="1,6-10">
                         	void printOwing(double previousAmount) {
@@ -460,7 +461,7 @@ public class Customer{
 				<h4><br/>Alles sehr schön informativ aber wie fange ich den jetzt an?</h4>
 				<ul>
 				<li>Was ist eigentlich mein Client-Code und was ist mein Libary-Code?</li>
-				<li>An welchen Stellen steuern Varianten von Objekten den Prozessablauf?</li>
+				<li>Wo finde ich offensichtliche Codesmells und Anti-Patterns</li>
 				<li>Verstehe ich den <span class="fragment highlight-red">Roten Faden</span> einer Applikation oder zerfasert er</li>
 				<li>Kommentare sagen <span class="fragment highlight-red">WAS</span> aber nicht <span class="fragment highlight-green">WARUM</span> Dinge so sind wie sie sind</li>
 				</ul>
@@ -484,7 +485,7 @@ public class Customer{
                 <ul>
                     <span style="display: inline-block;" class="fragment fade-right"><li>Refactorieren ist wie Sport, wir sollten Ihn machen weil er gut für uns ist, können uns aber manchmal nur schwer motivieren.</li></span>
                     <span style="display: inline-block;" class="fragment fade-right"><li>Knabbern statt Schlingen</li></span>
-					 <span style="display: inline-block;" class="fragment fade-right"><li>Pfadfinderprinzip aanwenden</li></span>
+					 <span style="display: inline-block;" class="fragment fade-right"><li>Pfadfinderprinzip anwenden</li></span>
                     <span style="display: inline-block;" class="fragment fade-right"><li>Schlau (Toolgestützt) arbeiten</li></span>
                     <span style="display: inline-block;" class="fragment fade-right"><li>Fehler liegen lassen und erst im Anschluss beheben</li></span>
                     <span style="display: inline-block;" class="fragment fade-right"><li>Es erscheint anfangs Mühselig geht aber schnell ins Blut über</li></span>
@@ -493,11 +494,12 @@ public class Customer{
             </section>
             <section>
                 <h2><br/>Empfehlung</h2>
-                <img src="https://images-na.ssl-images-amazon.com/images/I/51K-M5hR8qL._SX392_BO1,204,203,200_.jpg" style="width:150px;height:200px;">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/51K-M5hR8qL._SX392_BO1,204,203,200_.jpg" style="width:50px;height:100px;">
                 <h4><a href="https://www.amazon.de/Refactoring-Improving-Design-Existing-Technology/dp/0201485672/">Deep Dive</a></h4>
-				<h4> <a href=https://refactoring.com/catalog/></a>Quick Reference - schematic<h4>
-                <h4> <a href="https://github.com/HugoMatilla/Refactoring-Summary">Reference - with explanation</a></h4>
-            </section>
+				<h4> <a href="https://refactoring.com/catalog/">schnelle schematische Erklärung</a><h4>
+                <h4> <a href="https://github.com/HugoMatilla/Refactoring-Summary">git Repo mit allen Refactoing Techniken und Code Beispielen</a></h4>
+				<h4> <a href="https://refactoring.guru/">gut aufbereitete Webseite zum Thema Refactoring</a></h4>            
+				</section>
             <section data-background="https://media.giphy.com/media/YV3vOINigsezsVO7Xu/giphy.gif">
                 <h2>Ich hoffe ich konnte euch etwas für Refactoring begeistern</h2>
 
