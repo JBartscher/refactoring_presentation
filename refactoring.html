@@ -55,7 +55,7 @@
 				<h4><font color="red">Dieser Vortrag ist nicht</font></h4> 
                 <span style="display: inline-block;" class="fragment fade-right">dazu gedacht eine Anleitung zum Refactoring zu sein</span>
 				<h4><font color="green">Dieser Vortrag ist </font></h4> 
-				 <span style="display: inline-block;" class="fragment fade-right">ein Appetitanreger um Refactoring in deinen Arbeitsprozess einfließen zu lassen</span>
+				 <span style="display: inline-block;" class="fragment fade-right">ein Appetitanreger um Refactoring in Ihren Arbeitsprozess einfließen zu lassen</span>
             </section>
             <!-- Definition -->
             <section>
@@ -69,7 +69,7 @@
             <section>
                 <h2>kurze Motivation</h2>
                 <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                    &ldquo;Ich bin immer bereit hart zu arbeiten um möglichst wenig zu arbeiten.&ldquo; - Ich
+                    &ldquo;Ich bin immer bereit hart zu arbeiten, um möglichst wenig zu arbeiten.&ldquo; - Ich
                 </blockquote>
             </section>
             <!-- Vorraussetzungen -->
@@ -78,17 +78,17 @@
                 <p class="fragment grow highlight-green">der bestehende Code muss funktionieren!</p>
                 <p class="fragment highlight-red">kaputten Code muss man reparieren oder neuschreiben!</p>
                 <p class="fragment highlight-blue">Code muss "allen" gehören!</p>
-                <span style="display: inline-block;" class="fragment fade-right">Tests, Wir benötigen erstmal nur <span class="fragment highlight-blue">Funktionale Tests</span>, noch keine <span class="fragment highlight-current-blue">Unit Tests</span></span>
+                <span style="display: inline-block;" class="fragment fade-right">Tests, erstmal nur <span class="fragment highlight-blue">funktionale Tests</span>, noch keine <span class="fragment highlight-current-blue">Unit Tests</span></span>
                  <p class="fragment highlight-red">Eine Versionsverwaltung!  (git, svn ...)</span>
 				</section>
             <!-- Zeichen das Refactoriert werden muss -->
             <section>
-                <h2>Zeichen das Refactoriert werden muss</h2>
+                <h2>Zeichen, dass Refactoriert werden muss</h2>
 				<ul>
-					<li>Ständiger Zeitdruck nach neuen Featueres</li>
+					<li>Ständiger Zeitdruck nach neuen Features</li>
 					<li>Abhetzen von Deadline zu Deadline</li>
 					<li>Unzufriede/gestresste Mitarbeiter</li>
-					<li class="fragment highlight-red">Code Smells</li>
+					<li class="fragment highlight-red">Code Smells und Antipatterns</li>
 					<li>Schwer lesbarer/verständlicher Code</li>
 					<li>Änderungen am Code erzeugen Seiteneffekte</li>
 					<li>Komplexe Bedingungen und/oder Entscheidungsbäume</li>
@@ -101,35 +101,47 @@
                     <li>Lange Methoden</li>
                     <li>Lange Klassen</li>
                     <li>Lange Parameterlisten</li>
-					 <li>Neid</li>
+					<li>Neid</li>
                     <li>Redundanter/ duplizierter Code</li>
-                    <li>divergente Änderungen</li>
+                    <li>Divergente Änderungen</li>
                     <li>Schrotkugeln</li>                   
                     <li>switch-case</li>
-                    <li>viele elementare Typen</li>
-                    <li>viele Kommentare<span style="display: inline-block;" class="fragment fade-left highlight-red">?</span></li>
+                    <li>Viele elementare Typen</li>
+                    <li>Viele Kommentare<span style="display: inline-block;" class="fragment fade-left highlight-red">?</span></li>
 					<li><a href="https://de.wikipedia.org/wiki/Code-Smell">und viele weitere ...</a></li>
                 </ul>
             </section>
+			<!--Antipatterns-->
+			                <section>
+				<h4><br/>Antipatterns</h4>
+				<ul>
+				<li>Big Ball of Mud &#x21D2; Design Patterns, Software Architecture</li>
+				<li>Gottobject &#x21D2; aufteilen in Objekte</li>
+				<li>Sumo-Hochzeit&#x21D2; DB-Abstraktionsschicht</li>
+				<li>Lavafluss &#x21D2; Code Coverage Test</li>
+				<li>Zwiebel &#x21D2; Refakturierung des bestehenden Codes anstatt "ranklatschen" von Features</li>
+				<li>Magic Numbes &#x21D2; Enumerationen oder Polymorphie</li>
+				</ul>
+				</section>
 
             <!-- Vorteile & Nachteile -->
             <section data-background-transition="zoom" data-background="#4d7e65">
                 <h2>Vorteile des Refactorings</h2>
                 <ul>
-                    <li>massiver Zeitgewinn beim Einarbeiten von MA in bestehenden Code</li>
-                    <li>generell massiver Zeitgewinn beim programmieren</li>
-                    <li>schafft tieferes Verständnis für den vorliegen Code</li>
-                    <li>zunahme der Arbeitsqualität</li>
-                    <li>schnelle Anpassungen am Code möglich</li>
+                    <li>Zeitgewinn beim Einarbeiten von neuen Mitarbeitern in bestehende Projekte</li>
+                    <li>Genereller Zeitgewinn beim Programmieren</li>
+                    <li>Schafft tieferes Verständnis für den vorliegen Code</li>
+                    <li>Zunahme der Arbeitsqualität</li>
+                    <li>Schnelle Anpassungen am Code möglich</li>
                 </ul>
             </section>
             <section data-background-transition="zoom" data-background="#b5533c">
                 <h2>Nachteile des Refactorings</h2>
                 <ul>
                     <li>Falsch ausgeführt schaufelt sich der Entwickler sein eigenes Grab</li>
-                    <li>unfertiges Refactoring ist wie Schulden machen</li>
-					<li>lieber erstmal Architektur planen als loscoden</li>
-                    <li>zu starke indirektion</li>
+                    <li>Unfertiges Refactoring ist wie Schulden machen</li>
+					<li>Besser zuerst die Architektur planen als wild drauflos programmieren</li>
+                    <li>Zu starke Indirektion</li>
                 </ul>
             </section>
             <!-- Code Beispiele Refactoring -->
@@ -212,7 +224,6 @@
                     <pre>
                                   <code class="hljs" data-trim data-line-numbers="1-4,23">
                                       abstract class Swallow {
-                                        // ...
                                         abstract double getSpeed();
                                       }
                                       
@@ -230,14 +241,13 @@
                                         double getSpeed() {
                                           return (isNailed) ? 0 : getBaseSpeed(voltage);
                                         }
-                                      }
-                                      
+                                      }                                      
                                       // Somewhere in client code
                                       speed = bird.getSpeed();
                                   </code>
                                 </pre>
                     <ul>
-                        <li>Tell-Don’t-Ask principle: Nicht nach dem Object-state Fragen sondern einen Auftrag erteilen und das Object das "wie" handeln lassen</li>
+                        <li>Tell-Don’t-Ask principle: Nicht nach dem Objekt-state fragen sondern Auftrag erteilen und das Objekt das "wie" entscheiden lassen</li>
                         <li>Extrem einfache Integration von neuen "Conditionals"</li>
                     </ul>
                 </section>
@@ -263,8 +273,8 @@
                 <section>
                     <img src="Null-pattern.jpg">
                     <ul>
-                        <li>Referenz auf die Variable zu jedem Zeitpunkt auf ein gültiges Objekt verweist, was Behandlungen von Sonderfällen (Nichtvorhandensein) erübrigt.</li>
-                        <li>Sollte Konstant und als Singleton implementiert werden</li>
+                        <li>Referenz auf die Variable verweist zu jedem Zeitpunkt auf ein gültiges Objekt, was Behandlungen von Sonderfällen (Nichtvorhandensein) erübrigt.</li>
+                        <li>Als Konstant und Singleton implementiert</li>
                         <li>Code Redundanz sinkt, Fehler bei keiner Überprüfung vermieden</li>
                     </ul>
                 </section>
@@ -300,7 +310,7 @@
                     <ul>
                         <li>Trennung von Verarbeitung und Fehlerbehandlung</li>
                         <li>Erweiterbare Objekte, keine Basisdatentypen mehr</li>
-                        <li>Weiterreichen an die Stelle die diese Behandeln soll (Voraussetztung OOP)</li>
+                        <li>Weiterreichen an die Stelle, die diese behandeln soll (Voraussetztung OOP)</li>
                         <li>Nicht übertreiben!</li>
                     </ul>
                 </section>
@@ -339,8 +349,8 @@
                                 </pre>
                     <ul>
                         <li>Single-Responsibility-Prinzip</li>
-                        <li>Erhöhung der Testbarkeit</li>
-                        <li>stärkere Abstraktion und Aufgabentrennung</li>
+                        <li>Verbesserung der Testbarkeit</li>
+                        <li>Stärkere Abstraktion und Aufgabentrennung</li>
                         <li>Einfachere Änderung und Erweiterung der Klassen</li>
                     </ul>
                 </section>
@@ -458,25 +468,15 @@ public class Customer{
             </section>
 			<section> -->
 			<section>
-				<h4><br/>Alles sehr schön informativ aber wie fange ich den jetzt an?</h4>
+				<h4><br/>Alles sehr schön informativ aber wo fange ich jetzt an?</h4>
 				<ul>
 				<li>Was ist eigentlich mein Client-Code und was ist mein Libary-Code?</li>
-				<li>Wo finde ich offensichtliche Codesmells und Anti-Patterns</li>
-				<li>Verstehe ich den <span class="fragment highlight-red">Roten Faden</span> einer Applikation oder zerfasert er</li>
+				<li>Wo finde ich offensichtliche Codesmells und Anti-Patterns?</li>
+				<li>Verstehe ich den <span class="fragment highlight-red">Roten Faden</span> einer Applikation oder zerfasert er?</li>
 				<li>Kommentare sagen <span class="fragment highlight-red">WAS</span> aber nicht <span class="fragment highlight-green">WARUM</span> Dinge so sind wie sie sind</li>
 				</ul>
 				</section>
-                <section>
-				<h4><br/>Antipatterns</h4>
-				<ul>
-				<li>Big Ball of Mud &#x21D2; Design Patterns, Software Architecture</li>
-				<li>Gottobject &#x21D2; aufteilen in Objekte</li>
-				<li>Sumo-Hochzeit (VSC B12...)&#x21D2; DB-Abstraktionsschicht</li>
-				<li>Lavafluss &#x21D2; Code Coverage Test</li>
-				<li>Zwiebel &#x21D2; Refakturierung des bestehenden Codes anstatt "ranklatschen" von Features</li>
-				<li>Magische Werte &#x21D2; Enumerationen oder Polymorphie</li>
-				</ul>
-				</section>
+
 			</section>
 
             <!-- Empfehlung & Rausschmeißer -->
@@ -484,11 +484,11 @@ public class Customer{
                 <h2>Abschließende Worte</h2>
                 <ul>
                     <span style="display: inline-block;" class="fragment fade-right"><li>Refactorieren ist wie Sport, wir sollten Ihn machen weil er gut für uns ist, können uns aber manchmal nur schwer motivieren.</li></span>
-                    <span style="display: inline-block;" class="fragment fade-right"><li>Knabbern statt Schlingen</li></span>
+                    <span style="display: inline-block;" class="fragment fade-right"><li>Knabbern statt schlingen</li></span>
 					 <span style="display: inline-block;" class="fragment fade-right"><li>Pfadfinderprinzip anwenden</li></span>
-                    <span style="display: inline-block;" class="fragment fade-right"><li>Schlau (Toolgestützt) arbeiten</li></span>
+                    <span style="display: inline-block;" class="fragment fade-right"><li>Schlau (toolgestützt) arbeiten</li></span>
                     <span style="display: inline-block;" class="fragment fade-right"><li>Fehler liegen lassen und erst im Anschluss beheben</li></span>
-                    <span style="display: inline-block;" class="fragment fade-right"><li>Es erscheint anfangs Mühselig geht aber schnell ins Blut über</li></span>
+                    <span style="display: inline-block;" class="fragment fade-right"><li>Es erscheint anfangs mühselig, geht aber schnell ins Blut über</li></span>
 
                 </ul>
             </section>
